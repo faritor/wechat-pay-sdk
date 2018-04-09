@@ -33,6 +33,8 @@ public class WeChatCallBackDto extends BaseResponseDto {
     private String attach;
     private String time_end;
 
+    private String result_wecaht_message;
+
     public String getDevice_info() {
         return device_info;
     }
@@ -167,5 +169,13 @@ public class WeChatCallBackDto extends BaseResponseDto {
 
     public void setTime_end(String time_end) {
         this.time_end = time_end;
+    }
+
+    public String getResult_wecaht_message() {
+        return result_wecaht_message;
+    }
+
+    public void setResult_wecaht_message(String result_wecaht_message) {
+        this.result_wecaht_message = result_wecaht_message;
     }
 }

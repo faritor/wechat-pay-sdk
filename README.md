@@ -10,6 +10,12 @@ maven项目引用地址
 <dependency>
   <groupId>net.unmz.java.wechat.pay</groupId>
   <artifactId>wechat-pay-sdk</artifactId>
-  <version>1.0.1</version>
+  <version>1.0.2</version>
 </dependency>
 ```
+
+版本更新日志:
+
+1.0.2
+    
+    新增微信回调解析

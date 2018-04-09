@@ -4,6 +4,7 @@ import net.unmz.java.util.json.JsonUtils;
 import net.unmz.java.util.xml.XmlUtils;
 import net.unmz.java.wechat.pay.dto.response.WeChatCallBackDto;
 import net.unmz.java.wechat.pay.exception.WeChatException;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,7 +24,7 @@ public class WeChatCallBack {
     public static WeChatCallBackDto callBack(HttpServletRequest request, HttpServletResponse response) throws WeChatException {
         try {
             WeChatCallBackDto dto = new WeChatCallBackDto();
-            response.getWriter().append(getCallBackInfo(dto, request));
+            getCallBackInfo(dto, request);
             return dto;
         } catch (Exception e) {
             e.printStackTrace();
@@ -31,23 +32,23 @@ public class WeChatCallBack {
         }
     }
 
-    private static String getCallBackInfo(WeChatCallBackDto dto, HttpServletRequest request) {
+    private static void getCallBackInfo(WeChatCallBackDto dto, HttpServletRequest request) {
+        String result_code = "FAIL";
         try {
             String xmlString = XmlUtils.parseRequst(request);
-            System.out.println("----接收到的数据如下：---\n" + xmlString);
-            Map<String, String> map = XmlUtils.toMap(xmlString.getBytes(), "utf-8");
-            String result_code = map.get("result_code");
-            if (WeChatPay.checkSign(xmlString)) {
-                String xml = XmlUtils.toString(xmlString, "utf-8");
-                dto = JsonUtils.toBean(xml, WeChatCallBackDto.class);
-                return returnXML(result_code);
-            } else {
-                return returnXML("FAIL");
+            if(StringUtils.isNotBlank(xmlString)){
+                System.out.println("----接收到的数据如下：---\n" + xmlString);
+                Map<String, String> map = XmlUtils.toMap(xmlString.getBytes(), "utf-8");
+                result_code = map.get("result_code");
+                if (WeChatPay.checkSign(xmlString)) {
+                    String xml = XmlUtils.toString(xmlString, "utf-8");
+                    dto = JsonUtils.toBean(xml, WeChatCallBackDto.class);
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        dto.setResult_wecaht_message(returnXML(result_code));
     }
 
     private static String returnXML(String return_code) {

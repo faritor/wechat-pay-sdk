@@ -5,12 +5,8 @@ import net.unmz.java.util.json.JsonUtils;
 import net.unmz.java.util.security.MD5Utils;
 import net.unmz.java.util.security.SignUtils;
 import net.unmz.java.util.xml.XmlUtils;
-import net.unmz.java.wechat.pay.constants.WeChatURLEnum;
 import net.unmz.java.wechat.pay.dto.BaseRequestDto;
 import net.unmz.java.wechat.pay.dto.BaseResponseDto;
-import net.unmz.java.wechat.pay.dto.request.CloseOrderRequestDto;
-import net.unmz.java.wechat.pay.dto.request.UnifiedOrderRequestDto;
-import net.unmz.java.wechat.pay.dto.response.CloseOrderResponseDto;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Map;
