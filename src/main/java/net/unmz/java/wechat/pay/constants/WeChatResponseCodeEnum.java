@@ -11,10 +11,7 @@ package net.unmz.java.wechat.pay.constants;
  */
 public enum WeChatResponseCodeEnum {
 
-    SUCCESS("SUCCESS", "成功"),
-
-
-    ;
+    SUCCESS("SUCCESS", "成功"),;
 
     WeChatResponseCodeEnum(String code, String desc) {
         this.code = code;
