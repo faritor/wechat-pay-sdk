@@ -20,7 +20,7 @@ import org.apache.commons.lang3.StringUtils;
  * @date 2018-4-1 1:57
  * @since JDK 1.8
  */
-public class WeChatOrderQuery extends WeChatPay{
+public class WeChatOrderQuery extends WeChatPay {
 
     /**
      * 微信查询订单接口执行方法
@@ -38,7 +38,7 @@ public class WeChatOrderQuery extends WeChatPay{
                 && WeChatResponseCodeEnum.SUCCESS.getCode().equals(responseDto.getReturn_code())
                 && WeChatResponseCodeEnum.SUCCESS.getCode().equals(responseDto.getTrade_state()))
             return responseDto;
-        else if(StringUtils.isNotBlank(responseDto.getErr_code()))
+        else if (StringUtils.isNotBlank(responseDto.getErr_code()))
             throw new WeChatException(responseDto.getErr_code_des());
         throw new WeChatException(responseDto.getTrade_state_desc());
     }
@@ -52,7 +52,7 @@ public class WeChatOrderQuery extends WeChatPay{
     protected void validateParams(BaseRequestDto dto) {
         super.validateParams(dto);
         OrderQueryRequestDto requestDto = (OrderQueryRequestDto) dto;
-        if(StringUtils.isBlank(requestDto.getOut_trade_no()) && StringUtils.isBlank(requestDto.getTransaction_id()))
+        if (StringUtils.isBlank(requestDto.getOut_trade_no()) && StringUtils.isBlank(requestDto.getTransaction_id()))
             throw new IllegalArgumentException("WeChat Request params transaction_id and out_trade_no is null");
     }
 }
