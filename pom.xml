@@ -6,7 +6,7 @@
 
     <groupId>net.unmz.java.wechat.pay</groupId>
     <artifactId>wechat-pay-sdk</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <packaging>jar</packaging>
 
     <name>wechat-pay-sdk</name>
@@ -57,7 +57,7 @@
         <dependency>
             <groupId>net.unmz.java</groupId>
             <artifactId>unmz-common-util</artifactId>
-            <version>1.0.8</version>
+            <version>1.0.9</version>
         </dependency>
 
         <dependency>
