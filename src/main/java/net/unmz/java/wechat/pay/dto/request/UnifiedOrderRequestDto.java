@@ -5,8 +5,8 @@ import net.unmz.java.wechat.pay.dto.BaseRequestDto;
 import java.io.Serializable;
 
 /**
- * Project Name:
- * 功能描述：
+ * Project Name: 微信支付SDK
+ * 功能描述：统一下单请求实体
  *
  * @author faritor@unmz.net
  * @version 1.0

@@ -21,6 +21,10 @@ import org.junit.Test;
 
 public class testWeChatPay {
 
+    static {
+        WeChatPay.setAppKey("商户密钥");
+    }
+
     @Test
     public void testUnifiedOrder() {
         UnifiedOrderRequestDto dto = new UnifiedOrderRequestDto();
@@ -37,7 +41,6 @@ public class testWeChatPay {
 
         WeChatPay client = new WeChatUnifiedOrder();
         try {
-            WeChatPay.setAppKey("商户密钥");
             UnifiedOrderResponseDto responseDto = (UnifiedOrderResponseDto) client.execute(dto);
             System.out.println(responseDto.getPrepay_id());
         } catch (Exception e) {
