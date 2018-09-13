@@ -10,7 +10,7 @@ maven项目引用地址
 <dependency>
   <groupId>net.unmz.java.wechat.pay</groupId>
   <artifactId>wechat-pay-sdk</artifactId>
-  <version>1.0.2</version>
+  <version>1.0.3</version>
 </dependency>
 ```
 
@@ -22,6 +22,10 @@ maven项目引用地址
     4.回调通知
 
 版本更新日志:
+
+1.0.3
+
+    修复回调时,签名未校验通过返回成功消息
 
 1.0.2
     

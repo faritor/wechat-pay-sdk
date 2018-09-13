@@ -2,7 +2,6 @@ package net.unmz.java.wechat.pay;
 
 import net.unmz.java.util.http.HttpUtils;
 import net.unmz.java.util.json.JsonUtils;
-import net.unmz.java.util.map.MapUtils;
 import net.unmz.java.util.security.MD5Utils;
 import net.unmz.java.util.security.SignUtils;
 import net.unmz.java.util.xml.XmlUtils;
@@ -41,7 +40,7 @@ public abstract class WeChatPay {
      */
     protected String doPostWeChetRequest(BaseRequestDto dto, String url) throws Exception {
         validateParams(dto);
-        Map<String, String> params = MapUtils.objectToMap(dto);
+        Map<String, String> params = (Map<String, String>) JsonUtils.toBean(JsonUtils.toJSON(dto), Map.class);
         params = SignUtils.paraFilter(params);
         String signStr = SignUtils.getSign(params);
         String sign = MD5Utils.sign(signStr, "&key=" + AppKey, "utf-8").toUpperCase();
