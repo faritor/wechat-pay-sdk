@@ -20,6 +20,9 @@ public class BaseRequestDto implements Serializable {
     private String sign_type;//非必	String(32)	        MD5	签名类型，默认为MD5，支持HMAC-SHA256和MD5。
     private String sign;//必填 String(32)		        通过签名算法计算得出的签名值，详见签名生成算法
 
+    private String sub_appid;//否	    String(32)	    如需在支付完成后获取sub_openid则此参数必传。
+    private String sub_mch_id;//是	    String(32)	    微信支付分配的子商户号
+
     public String getAppid() {
         return appid;
     }
@@ -58,5 +61,21 @@ public class BaseRequestDto implements Serializable {
 
     public void setSign(String sign) {
         this.sign = sign;
+    }
+
+    public String getSub_mch_id() {
+        return sub_mch_id;
+    }
+
+    public void setSub_mch_id(String sub_mch_id) {
+        this.sub_mch_id = sub_mch_id;
+    }
+
+    public String getSub_appid() {
+        return sub_appid;
+    }
+
+    public void setSub_appid(String sub_appid) {
+        this.sub_appid = sub_appid;
     }
 }

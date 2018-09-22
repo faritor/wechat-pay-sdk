@@ -8,7 +8,6 @@ import org.apache.commons.lang3.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Map;
 
 /**
  * Project Name:
@@ -23,32 +22,32 @@ public class WeChatCallBack {
 
     public static WeChatCallBackDto callBack(HttpServletRequest request, HttpServletResponse response) throws WeChatException {
         try {
-            WeChatCallBackDto dto = new WeChatCallBackDto();
-            getCallBackInfo(dto, request);
-            return dto;
+            return getCallBackInfo(request);
         } catch (Exception e) {
             e.printStackTrace();
             throw new WeChatException(e.getMessage());
         }
     }
 
-    private static void getCallBackInfo(WeChatCallBackDto dto, HttpServletRequest request) {
+    private static WeChatCallBackDto getCallBackInfo(HttpServletRequest request) {
+        WeChatCallBackDto dto = new WeChatCallBackDto();
         String result_code = "FAIL";
         try {
             String xmlString = XmlUtils.parseRequst(request);
             if(StringUtils.isNotBlank(xmlString)){
                 System.out.println("----接收到的数据如下：---\n" + xmlString);
-                Map<String, String> map = XmlUtils.toMap(xmlString.getBytes(), "utf-8");
-                result_code = map.get("result_code");
                 if (WeChatPay.checkSign(xmlString)) {
                     String xml = XmlUtils.toString(xmlString, "utf-8");
                     dto = JsonUtils.toBean(xml, WeChatCallBackDto.class);
-                }
+                    result_code = dto.getResult_code();
+                }else
+                    result_code = "签名校验失败";
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         dto.setResult_wecaht_message(returnXML(result_code));
+        return dto;
     }
 
     private static String returnXML(String return_code) {

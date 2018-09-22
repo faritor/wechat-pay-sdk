@@ -11,24 +11,24 @@ import net.unmz.java.wechat.pay.dto.BaseResponseDto;
  * @date 2018-3-31 23:26
  * @since JDK 1.8
  */
-public class RefundResponseDto extends BaseResponseDto{
+public class RefundResponseDto extends BaseResponseDto {
 
     private static final long serialVersionUID = -8359892540545531083L;
-    private String transaction_id;
-    private String out_trade_no;
-    private String out_refund_no;
-    private String refund_id;
-    private String refund_fee;
-    private String settlement_refund_fee;
-    private String total_fee;
-    private String settlement_total_fee;
-    private String fee_type;
-    private String cash_fee;
-    private String cash_fee_type;
-    private String cash_refund_fee;
-    private String coupon_refund_fee;
+    private String transaction_id;//是	String(32)		微信订单号
+    private String out_trade_no;//是	    String(32)		商户系统内部订单号，要求32个字符内，只能是数字、大小写字母_-|*@ ，且在同一个商户号下唯一。
+    private String out_refund_no;//是	String(64)		商户系统内部的退款单号，商户系统内部唯一，只能是数字、大小写字母_-|*@ ，同一退款单号多次请求只退一笔。
+    private String refund_id;//是	String(32)	    	微信退款单号
+    private String refund_fee;//是	Int	            	退款总金额,单位为分,可以做部分退款
+    private String settlement_refund_fee;//否	Int		去掉非充值代金券退款金额后的退款金额，退款金额=申请退款金额-非充值代金券退款金额，退款金额<=申请退款金额
+    private String total_fee;//是	Int	            	订单总金额，单位为分，只能为整数，详见支付金额
+    private String settlement_total_fee;//否 	Int		去掉非充值代金券金额后的订单总金额，应结订单金额=订单金额-非充值代金券金额，应结订单金额<=订单金额。
+    private String fee_type;//否 	String(8)	    	订单金额货币类型，符合ISO 4217标准的三位字母代码，默认人民币：CNY，其他值列表详见货币类型
+    private String cash_fee;//是	    Int	            	现金支付金额，单位为分，只能为整数，详见支付金额
+    private String cash_fee_type;//否	String(16)		货币类型，符合ISO 4217标准的三位字母代码，默认人民币：CNY，其他值列表详见货币类型
+    private String cash_refund_fee;//否	Int	        	现金退款金额，单位为分，只能为整数，详见支付金额
+    private String coupon_refund_fee;//否	Int	    	代金券退款金额<=退款金额，退款金额-代金券或立减优惠退款金额为现金，说明详见代金券或立减优惠
 
-    private String coupon_refund_count;
+    private String coupon_refund_count;//否	Int	    	退款代金券使用数量
 
     public String getTransaction_id() {
         return transaction_id;
