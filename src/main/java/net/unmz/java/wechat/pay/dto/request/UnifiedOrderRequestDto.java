@@ -37,6 +37,8 @@ public class UnifiedOrderRequestDto extends BaseRequestDto {
     private String openid;//非必填     	String(128)		trade_type=JSAPI时（即公众号支付），此参数必传，此参数为微信用户在商户对应appid下的唯一标识。openid如何获取，可参考【获取openid】。企业号请使用【企业号OAuth2.0接口】获取企业号内成员userid，再调用【企业号userid转openid接口】进行转换
     private SceneInfo scene_info;//否	String(256)     该字段用于上报场景信息，目前支持上报实际门店信息。该字段为JSON对象数据，对象格式为{"store_info":{"id": "门店ID","name": "名称","area_code": "编码","address": "地址" }} ，字段详细说明请点击行前的+展开
 
+    private String sub_openid;//否	    String(128)	    trade_type=JSAPI，此参数必传，用户在子商户appid下的唯一标识。openid和sub_openid可以选传其中之一，如果选择传sub_openid,则必须传sub_appid。下单前需要调用【网页授权获取用户信息】接口获取到用户的Openid。
+
     public String getDevice_info() {
         return device_info;
     }
@@ -171,6 +173,14 @@ public class UnifiedOrderRequestDto extends BaseRequestDto {
 
     public void setScene_info(SceneInfo scene_info) {
         this.scene_info = scene_info;
+    }
+
+    public String getSub_openid() {
+        return sub_openid;
+    }
+
+    public void setSub_openid(String sub_openid) {
+        this.sub_openid = sub_openid;
     }
 
     public class SceneInfo implements Serializable {

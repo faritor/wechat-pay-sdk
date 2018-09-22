@@ -7,6 +7,7 @@ import net.unmz.java.util.security.SignUtils;
 import net.unmz.java.util.xml.XmlUtils;
 import net.unmz.java.wechat.pay.dto.BaseRequestDto;
 import net.unmz.java.wechat.pay.dto.BaseResponseDto;
+import net.unmz.java.wechat.pay.exception.WeChatException;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Map;

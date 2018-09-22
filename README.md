@@ -10,18 +10,25 @@ maven项目引用地址
 <dependency>
   <groupId>net.unmz.java.wechat.pay</groupId>
   <artifactId>wechat-pay-sdk</artifactId>
-  <version>1.0.3</version>
+  <version>1.0.4</version>
 </dependency>
 ```
 
-目前实现的功能有:
+目前实现的功能有:(普通商户/服务商)
     
     1.统一下单
     2.查询订单
     3.关闭订单
     4.回调通知
+    5.退款查询
+    6.申请退款
 
 版本更新日志:
+
+1.0.4
+    
+    1.对接服务商接口配置
+    2.完善退款查询与申请退款接口
 
 1.0.3
 

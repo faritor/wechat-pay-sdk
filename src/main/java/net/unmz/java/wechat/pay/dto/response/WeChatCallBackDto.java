@@ -14,24 +14,31 @@ import net.unmz.java.wechat.pay.dto.BaseResponseDto;
 public class WeChatCallBackDto extends BaseResponseDto {
 
     private static final long serialVersionUID = -1444210270642187032L;
-    private String device_info;
-    private String sign_type;
+    private String device_info;//否	String(32)		微信支付分配的终端设备号，
+    /**
+     * 普通商户支付回调中使用,服务商回调中无此参数
+     */
+    private String sign_type;//否	String(32)		签名类型，目前支持HMAC-SHA256和MD5，默认为MD5
 
-    private String openid;
-    private String is_subscribe;
-    private String trade_type;
-    private String bank_type;
-    private String total_fee;
-    private String settlement_total_fee;
-    private String fee_type;
-    private String cash_fee;
-    private String cash_fee_type;
-    private String coupon_fee;
-    private String coupon_count;
-    private String transaction_id;
-    private String out_trade_no;
-    private String attach;
-    private String time_end;
+    private String openid;//是	String(128)		    用户在商户appid下的唯一标识
+    private String is_subscribe;//是	    String(1)	用户是否关注公众账号，Y-关注，N-未关注，仅在公众账号类型支付有效
+    private String trade_type;//是	String(16)	    JSAPI、NATIVE、APP
+    private String bank_type;//是	String(16)	    银行类型，采用字符串类型的银行标识，银行类型见附表
+    private String total_fee;//是	Int	    	    订单总金额，单位为分
+    private String settlement_total_fee;//否	Int	    应结订单金额=订单金额-非充值代金券金额，应结订单金额<=订单金额。
+    private String fee_type;//否 	String(8)	    货币类型，符合ISO 4217标准的三位字母代码，默认人民币：CNY，其他值列表详见货币类型
+    private String cash_fee;//是	    Int		        现金支付金额订单现金支付金额，详见支付金额
+    private String cash_fee_type;//否    String(16)	货币类型，符合ISO 4217标准的三位字母代码，默认人民币：CNY，其他值列表详见货币类型
+    private String coupon_fee;//否	Int	    	    代金券或立减优惠金额<=订单总金额，订单总金额-代金券或立减优惠金额=现金支付金额，详见支付金额
+    private String coupon_count;//否	    Int		    代金券或立减优惠使用数量
+    private String transaction_id;//是	String(32)	微信支付订单号
+    private String out_trade_no;//是 	String(32)	商户系统内部订单号，要求32个字符内，只能是数字、大小写字母_-|*@ ，且在同一个商户号下唯一。
+    private String attach;//否	String(128)	    	商家数据包，原样返回
+    private String time_end;//是	String(14)	    	支付完成时间，格式为yyyyMMddHHmmss，如2009年12月25日9点10分10秒表示为20091225091010。其他详见时间规则
+
+
+    private String sub_openid;//否	String(128)		用户在子商户appid下的唯一标识
+    private String sub_is_subscribe;//否	String(1)	用户是否关注子公众账号，Y-关注，N-未关注，仅在公众账号类型支付有效
 
     private String result_wecaht_message;
 
@@ -169,6 +176,22 @@ public class WeChatCallBackDto extends BaseResponseDto {
 
     public void setTime_end(String time_end) {
         this.time_end = time_end;
+    }
+
+    public String getSub_openid() {
+        return sub_openid;
+    }
+
+    public void setSub_openid(String sub_openid) {
+        this.sub_openid = sub_openid;
+    }
+
+    public String getSub_is_subscribe() {
+        return sub_is_subscribe;
+    }
+
+    public void setSub_is_subscribe(String sub_is_subscribe) {
+        this.sub_is_subscribe = sub_is_subscribe;
     }
 
     public String getResult_wecaht_message() {
