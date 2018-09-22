@@ -10,7 +10,7 @@ maven项目引用地址
 <dependency>
   <groupId>net.unmz.java.wechat.pay</groupId>
   <artifactId>wechat-pay-sdk</artifactId>
-  <version>1.0.4</version>
+  <version>1.0.5</version>
 </dependency>
 ```
 
@@ -24,6 +24,11 @@ maven项目引用地址
     6.申请退款
 
 版本更新日志:
+
+1.0.5
+
+    补充1.0.4版本中未完善的功能,因已经发布maven中央仓库,所以只能重新发版
+
 
 1.0.4
     
