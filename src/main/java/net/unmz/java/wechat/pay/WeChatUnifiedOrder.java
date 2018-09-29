@@ -63,8 +63,10 @@ public class WeChatUnifiedOrder extends WeChatPay {
             throw new IllegalArgumentException("WeChat Request params notify_url is null");
         if (StringUtils.isBlank(requestDto.getTrade_type()))
             throw new IllegalArgumentException("WeChat Request params trade_type is null");
-        if (requestDto.getTrade_type().equals("JSAPI") && StringUtils.isBlank(requestDto.getOpenid()))
+        if (requestDto.getTrade_type().equals("JSAPI") && StringUtils.isBlank(requestDto.getOpenid()) && StringUtils.isBlank(requestDto.getSub_openid()))
             throw new IllegalArgumentException("WeChat Request params openid is null");
+        if(requestDto.getTrade_type().equals("JSAPI") && StringUtils.isNotBlank(requestDto.getSub_appid()) && StringUtils.isBlank(requestDto.getSub_openid()))
+            throw new IllegalArgumentException("WeChat Request params sub_openid is null");
         if (requestDto.getTrade_type().equals("NATIVE") && StringUtils.isBlank(requestDto.getProduct_id()))
             throw new IllegalArgumentException("WeChat Request params product_id is null");
 
@@ -75,16 +77,7 @@ public class WeChatUnifiedOrder extends WeChatPay {
             throw new IllegalArgumentException("WeChat Request params out_trade_no is null");
         if (requestDto.getTotal_fee().length() > 32)
             throw new IllegalArgumentException("WeChat Request params total_fee is null");
-        if (StringUtils.isBlank(requestDto.getSpbill_create_ip()))
-            throw new IllegalArgumentException("WeChat Request params spbill_create_ip is null");
-        if (StringUtils.isBlank(requestDto.getNotify_url()))
-            throw new IllegalArgumentException("WeChat Request params notify_url is null");
-        if (StringUtils.isBlank(requestDto.getTrade_type()))
-            throw new IllegalArgumentException("WeChat Request params trade_type is null");
-        if (requestDto.getTrade_type().equals("JSAPI") && StringUtils.isBlank(requestDto.getOpenid()))
-            throw new IllegalArgumentException("WeChat Request params openid is null");
-        if (requestDto.getTrade_type().equals("NATIVE") && StringUtils.isBlank(requestDto.getProduct_id()))
-            throw new IllegalArgumentException("WeChat Request params product_id is null");
+
     }
 
 }

@@ -1,13 +1,8 @@
 package net.unmz.java.wechat.pay;
 
 import net.unmz.java.util.code.StrCodeUtils;
-import net.unmz.java.wechat.pay.dto.request.CloseOrderRequestDto;
-import net.unmz.java.wechat.pay.dto.request.OrderQueryRequestDto;
-import net.unmz.java.wechat.pay.dto.request.UnifiedOrderRequestDto;
-import net.unmz.java.wechat.pay.dto.response.CloseOrderResponseDto;
-import net.unmz.java.wechat.pay.dto.response.OrderQueryResponseDto;
-import net.unmz.java.wechat.pay.dto.response.UnifiedOrderResponseDto;
-import net.unmz.java.wechat.pay.dto.response.WeChatCallBackDto;
+import net.unmz.java.wechat.pay.dto.request.*;
+import net.unmz.java.wechat.pay.dto.response.*;
 import net.unmz.java.wechat.pay.exception.WeChatException;
 import org.junit.Test;
 
@@ -27,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 public class testWeChatPay {
 
     static {
-        WeChatPay.setAppKey("商户密钥");
+        WeChatPay.setAppKey("商户密钥");//可在每次调用前定义,也可以在处理微信支付类静态代码块中赋初始值
     }
 
     @Test
@@ -44,8 +39,15 @@ public class testWeChatPay {
         dto.setSpbill_create_ip("192.168.1.1");
         dto.setOpenid("OpenId");
 
+
+//        dto.setSub_appid("特约商户APPID");
+//        dto.setSub_mch_id("特约商户号");
+//        dto.setSub_openid("特约商户OpenId");
+//        WeChatPay.setAppKey("商户密钥");//当选择服务商模式时,此处的appKey选用服务商统一秘钥
+
         WeChatPay client = new WeChatUnifiedOrder();
         try {
+
             UnifiedOrderResponseDto responseDto = (UnifiedOrderResponseDto) client.execute(dto);
             System.out.println(responseDto.getPrepay_id());
         } catch (Exception e) {
@@ -61,6 +63,10 @@ public class testWeChatPay {
         dto.setMch_id("商户号");
         dto.setNonce_str(StrCodeUtils.getStrCode(16));
         dto.setOut_trade_no("111");
+
+//        dto.setSub_appid("特约商户APPID");
+//        dto.setSub_mch_id("特约商户号");
+//        WeChatPay.setAppKey("商户密钥");//当选择服务商模式时,此处的appKey选用服务商统一秘钥
 
         try {
             WeChatPay.setAppKey("商户密钥");
@@ -80,6 +86,10 @@ public class testWeChatPay {
         dto.setMch_id("商户号");
         dto.setNonce_str(StrCodeUtils.getStrCode(16));
         dto.setOut_trade_no("1231");
+
+//        dto.setSub_appid("特约商户APPID");
+//        dto.setSub_mch_id("特约商户号");
+//        WeChatPay.setAppKey("商户密钥");//当选择服务商模式时,此处的appKey选用服务商统一秘钥
 
         try {
             WeChatPay.setAppKey("商户密钥");
@@ -105,4 +115,50 @@ public class testWeChatPay {
         }
     }
 
+
+    @Test
+    public void testRefundQuery() {
+        RefundQueryRequestDto dto = new RefundQueryRequestDto();
+        dto.setAppid("AppId");
+        dto.setMch_id("商户号");
+        dto.setNonce_str(StrCodeUtils.getStrCode(16));
+        dto.setOut_trade_no("1231");
+
+//        dto.setSub_appid("特约商户APPID");
+//        dto.setSub_mch_id("特约商户号");
+//        WeChatPay.setAppKey("商户密钥");//当选择服务商模式时,此处的appKey选用服务商统一秘钥
+
+        try {
+            WeChatPay.setAppKey("商户密钥");
+            WeChatPay client = new WeChatCloseOrder();
+            RefundQueryResponseDto responseDto = (RefundQueryResponseDto) client.execute(dto);
+            System.out.println(responseDto.getReturn_msg());
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @Test
+    public void testRefundAble() {
+        RefundRequestDto dto = new RefundRequestDto();
+        dto.setAppid("AppId");
+        dto.setMch_id("商户号");
+        dto.setNonce_str(StrCodeUtils.getStrCode(16));
+        dto.setOut_trade_no("1231");
+
+//        dto.setSub_appid("特约商户APPID");
+//        dto.setSub_mch_id("特约商户号");
+//        WeChatPay.setAppKey("商户密钥");//当选择服务商模式时,此处的appKey选用服务商统一秘钥
+
+        try {
+            WeChatPay.setAppKey("商户密钥");
+            WeChatPay client = new WeChatCloseOrder();
+            RefundResponseDto responseDto = (RefundResponseDto) client.execute(dto);
+            System.out.println(responseDto.getReturn_msg());
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+    }
 }

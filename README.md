@@ -5,12 +5,14 @@
 
 业余时间整理，不足之处还望指出
 
+已有功能,可以在测试类中查看示例
+
 maven项目引用地址
 ```
 <dependency>
   <groupId>net.unmz.java.wechat.pay</groupId>
   <artifactId>wechat-pay-sdk</artifactId>
-  <version>1.0.5</version>
+  <version>1.0.6</version>
 </dependency>
 ```
 
@@ -24,6 +26,12 @@ maven项目引用地址
     6.申请退款
 
 版本更新日志:
+
+1.0.6
+
+    1.更新统一下单时,参数校验的方法
+    2.完善文档,方便自己,也方便他人
+
 
 1.0.5
 
