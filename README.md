@@ -12,7 +12,7 @@ maven项目引用地址
 <dependency>
   <groupId>net.unmz.java.wechat.pay</groupId>
   <artifactId>wechat-pay-sdk</artifactId>
-  <version>1.0.6</version>
+  <version>1.0.7</version>
 </dependency>
 ```
 
@@ -26,6 +26,11 @@ maven项目引用地址
     6.申请退款
 
 版本更新日志:
+
+1.0.7
+
+    修复解析XML文件出现XXE漏洞的风险
+
 
 1.0.6
 
