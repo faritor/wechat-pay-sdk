@@ -1,5 +1,6 @@
 package net.unmz.java.wechat.pay;
 
+import net.unmz.java.util.data.DataLengthCheckHelper;
 import net.unmz.java.util.json.JsonUtils;
 import net.unmz.java.util.xml.XmlUtils;
 import net.unmz.java.wechat.pay.constants.WeChatResponseCodeEnum;
@@ -49,16 +50,6 @@ public class WeChatRefundQuery extends WeChatPay {
                 && StringUtils.isBlank(requestDto.getOut_refund_no()) && StringUtils.isBlank(requestDto.getRefund_id()))
             throw new IllegalArgumentException("WeChat Request params transaction_id or out_trade_no or out_refund_no or refund_id is null");
 
-        if (StringUtils.isNotBlank(requestDto.getTransaction_id()) && requestDto.getTransaction_id().length() > 28)
-            throw new IllegalArgumentException("WeChat Request params transaction_id is too long");
-
-        if (StringUtils.isBlank(requestDto.getOut_trade_no()) && requestDto.getOut_trade_no().length() > 32)
-            throw new IllegalArgumentException("WeChat Request params out_trade_no is too long");
-
-        if (StringUtils.isBlank(requestDto.getOut_refund_no()) && requestDto.getOut_refund_no().length() > 64)
-            throw new IllegalArgumentException("WeChat Request params out_refund_no is too long");
-
-        if (StringUtils.isBlank(requestDto.getRefund_id()) && requestDto.getRefund_id().length() > 32)
-            throw new IllegalArgumentException("WeChat Request params refund_id is too long");
+        DataLengthCheckHelper.validateAttributeValueLength(requestDto);
     }
 }

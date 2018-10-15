@@ -1,5 +1,6 @@
 package net.unmz.java.wechat.pay.dto.request;
 
+import net.unmz.java.util.data.ValidateLength;
 import net.unmz.java.wechat.pay.dto.BaseRequestDto;
 
 /**
@@ -14,6 +15,7 @@ import net.unmz.java.wechat.pay.dto.BaseRequestDto;
 public class CloseOrderRequestDto extends BaseRequestDto {
     private static final long serialVersionUID = -1349906684158740888L;
 
+    @ValidateLength(value = 32, nullable = false)
     private String out_trade_no;
 
     public String getOut_trade_no() {

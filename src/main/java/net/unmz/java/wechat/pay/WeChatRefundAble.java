@@ -1,5 +1,6 @@
 package net.unmz.java.wechat.pay;
 
+import net.unmz.java.util.data.DataLengthCheckHelper;
 import net.unmz.java.util.json.JsonUtils;
 import net.unmz.java.util.xml.XmlUtils;
 import net.unmz.java.wechat.pay.constants.WeChatResponseCodeEnum;
@@ -44,24 +45,6 @@ public class WeChatRefundAble extends WeChatPay {
     protected void validateParams(BaseRequestDto dto) {
         super.validateParams(dto);
         RefundRequestDto requestDto = (RefundRequestDto) dto;
-        if (StringUtils.isBlank(requestDto.getTransaction_id()))
-            throw new IllegalArgumentException("WeChat Request params transaction_id is null");
-        if (requestDto.getTransaction_id().length() > 32)
-            throw new IllegalArgumentException("WeChat Request params transaction_id is too long");
-
-        if (StringUtils.isBlank(requestDto.getOut_trade_no()))
-            throw new IllegalArgumentException("WeChat Request params out_trade_no is null");
-        if (requestDto.getOut_trade_no().length() > 32)
-            throw new IllegalArgumentException("WeChat Request params out_trade_no is too long");
-
-        if (StringUtils.isBlank(requestDto.getOut_refund_no()))
-            throw new IllegalArgumentException("WeChat Request params out_refund_no is null");
-        if (requestDto.getOut_refund_no().length() > 64)
-            throw new IllegalArgumentException("WeChat Request params out_refund_no is too long");
-
-        if(StringUtils.isBlank(requestDto.getTotal_fee()))
-            throw new IllegalArgumentException("WeChat Request params total_fee is null");
-        if(StringUtils.isBlank(requestDto.getRefund_fee()))
-            throw new IllegalArgumentException("WeChat Request params refund_fee is null");
+        DataLengthCheckHelper.validateAttributeValueLength(requestDto);
     }
 }
