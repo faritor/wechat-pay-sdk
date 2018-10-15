@@ -1,5 +1,6 @@
 package net.unmz.java.wechat.pay.dto.request;
 
+import net.unmz.java.util.data.ValidateLength;
 import net.unmz.java.wechat.pay.dto.BaseRequestDto;
 
 /**
@@ -14,7 +15,9 @@ import net.unmz.java.wechat.pay.dto.BaseRequestDto;
 public class OrderQueryRequestDto extends BaseRequestDto {
     private static final long serialVersionUID = 362897404814259218L;
 
+    @ValidateLength(value = 32)
     private String transaction_id;
+    @ValidateLength(value = 32)
     private String out_trade_no;
 
     public String getTransaction_id() {

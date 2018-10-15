@@ -1,5 +1,6 @@
 package net.unmz.java.wechat.pay;
 
+import net.unmz.java.util.data.DataLengthCheckHelper;
 import net.unmz.java.util.http.HttpUtils;
 import net.unmz.java.util.json.JsonUtils;
 import net.unmz.java.util.security.MD5Utils;
@@ -53,20 +54,7 @@ public abstract class WeChatPay {
     protected void validateParams(BaseRequestDto dto) {
         if (dto == null)
             throw new IllegalArgumentException("WeChat Request params is null");
-
-        if (StringUtils.isBlank(dto.getAppid()))
-            throw new IllegalArgumentException("WeChat Request params appid is null");
-        if (StringUtils.isBlank(dto.getMch_id()))
-            throw new IllegalArgumentException("WeChat Request params mchId is null");
-        if (StringUtils.isBlank(dto.getNonce_str()))
-            throw new IllegalArgumentException("WeChat Request params nonce_str is null");
-
-        if (dto.getAppid().length() > 32)
-            throw new IllegalArgumentException("WeChat Request params appid is too long");
-        if (dto.getMch_id().length() > 32)
-            throw new IllegalArgumentException("WeChat Request params mchId is too long");
-        if (dto.getNonce_str().length() > 32)
-            throw new IllegalArgumentException("WeChat Request params nonce_str is too long");
+        DataLengthCheckHelper.validateAttributeValueLength(dto);
     }
 
     public static boolean checkSign(String xmlString) {

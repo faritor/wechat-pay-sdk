@@ -1,5 +1,6 @@
 package net.unmz.java.wechat.pay;
 
+import net.unmz.java.util.data.DataLengthCheckHelper;
 import net.unmz.java.util.json.JsonUtils;
 import net.unmz.java.util.xml.XmlUtils;
 import net.unmz.java.wechat.pay.constants.WeChatResponseCodeEnum;
@@ -51,10 +52,6 @@ public class WeChatCloseOrder extends WeChatPay {
     protected void validateParams(BaseRequestDto dto) {
         super.validateParams(dto);
         CloseOrderRequestDto requestDto = (CloseOrderRequestDto) dto;
-        if (StringUtils.isBlank(requestDto.getOut_trade_no()))
-            throw new IllegalArgumentException("WeChat Request params out_trade_no is null");
-
-        if (requestDto.getOut_trade_no().length() > 32)
-            throw new IllegalArgumentException("WeChat Request params out_trade_no is too long");
+        DataLengthCheckHelper.validateAttributeValueLength(requestDto);
     }
 }

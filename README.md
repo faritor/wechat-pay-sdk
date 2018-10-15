@@ -12,7 +12,7 @@ maven项目引用地址
 <dependency>
   <groupId>net.unmz.java.wechat.pay</groupId>
   <artifactId>wechat-pay-sdk</artifactId>
-  <version>1.0.7</version>
+  <version>1.0.8</version>
 </dependency>
 ```
 
@@ -26,6 +26,11 @@ maven项目引用地址
     6.申请退款
 
 版本更新日志:
+1.0.8
+
+    新增自定义注解,校验入参中属性的合法性
+    问题:在汉字校验中有异常,微信校验中,一个汉字不是一个长度
+
 
 1.0.7
 

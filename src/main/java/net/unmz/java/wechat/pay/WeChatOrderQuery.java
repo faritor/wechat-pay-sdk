@@ -1,5 +1,6 @@
 package net.unmz.java.wechat.pay;
 
+import net.unmz.java.util.data.DataLengthCheckHelper;
 import net.unmz.java.util.json.JsonUtils;
 import net.unmz.java.util.xml.XmlUtils;
 import net.unmz.java.wechat.pay.constants.WeChatResponseCodeEnum;
@@ -52,7 +53,6 @@ public class WeChatOrderQuery extends WeChatPay {
     protected void validateParams(BaseRequestDto dto) {
         super.validateParams(dto);
         OrderQueryRequestDto requestDto = (OrderQueryRequestDto) dto;
-        if (StringUtils.isBlank(requestDto.getOut_trade_no()) && StringUtils.isBlank(requestDto.getTransaction_id()))
-            throw new IllegalArgumentException("WeChat Request params transaction_id and out_trade_no is null");
+        DataLengthCheckHelper.validateAttributeValueLength(requestDto);
     }
 }
