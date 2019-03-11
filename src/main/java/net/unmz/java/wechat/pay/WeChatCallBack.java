@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class WeChatCallBack {
 
-    public static WeChatCallBackDto callBack(HttpServletRequest request, HttpServletResponse response) throws WeChatException {
+    public static WeChatCallBackDto callBack(HttpServletRequest request) throws WeChatException {
         try {
             return getCallBackInfo(request);
         } catch (Exception e) {
