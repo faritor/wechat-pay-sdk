@@ -32,7 +32,7 @@ public enum WeChatResponseCodeEnum {
     TRADE_STATE_PAYERROR("PAYERROR","支付失败(其他原因，如银行返回失败)"),
 
     //错误码
-    ERR_CODE_ORDER_NOT_EXIST("ORDERNOTEXIST","order not exist"),
+    ERR_CODE_ORDER_NOT_EXIST("ORDERNOTEXIST","订单不存在"),
 
 
     //创建订单返回错误码

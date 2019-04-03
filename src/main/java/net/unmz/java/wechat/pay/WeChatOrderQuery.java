@@ -40,8 +40,8 @@ public class WeChatOrderQuery extends WeChatPay {
                 && WeChatResponseCodeEnum.SUCCESS.getCode().equals(responseDto.getTrade_state()))
             return responseDto;
         else if (StringUtils.isNotBlank(responseDto.getErr_code()))
-            throw new WeChatException(responseDto.getErr_code_des());
-        throw new WeChatException(responseDto.getTrade_state_desc());
+            throw new WeChatException(responseDto.getErr_code(), responseDto.getErr_code_des());
+        throw new WeChatException(responseDto.getTrade_state(), responseDto.getTrade_state_desc());
     }
 
     /**

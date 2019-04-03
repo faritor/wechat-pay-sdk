@@ -105,10 +105,9 @@ public class testWeChatPay {
     @Test
     public void testCallback() throws WeChatException {
         HttpServletRequest request = null;
-        HttpServletResponse response = null;
 
         WeChatPay.setAppKey("商户秘钥");
-        WeChatCallBackDto dto = WeChatCallBack.callBack(request, response);
+        WeChatCallBackDto dto = WeChatCallBack.callBack(request);
         String result = dto.getResult_wecaht_message();//用于响应给微信,告知微信成功或者失败
         if ("success".equalsIgnoreCase(dto.getReturn_code())) {
             //成功后的业务逻辑

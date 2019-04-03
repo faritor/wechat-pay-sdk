@@ -15,4 +15,8 @@ public class WeChatException extends Exception {
     public WeChatException(String message) {
         super(message);
     }
+
+    public WeChatException(String code, String message) {
+        super(code + "," + message);
+    }
 }
