@@ -12,7 +12,7 @@ maven项目引用地址
 <dependency>
   <groupId>net.unmz.java.wechat.pay</groupId>
   <artifactId>wechat-pay-sdk</artifactId>
-  <version>1.0.8</version>
+  <version>1.0.9</version>
 </dependency>
 ```
 
@@ -26,6 +26,11 @@ maven项目引用地址
     6.申请退款
 
 版本更新日志:
+
+1.0.9
+    
+    1.调整异常输出,将错误码与错误信息一并返回,用英文逗号隔开(修改微信查询订单对订单的描述)
+    2.将应用的common依赖版本升级
 
 1.0.8
 

@@ -39,8 +39,8 @@ public class WeChatUnifiedOrder extends WeChatPay {
                 && WeChatResponseCodeEnum.SUCCESS.getCode().equals(responseDto.getReturn_code()))
             return responseDto;
         else if (StringUtils.isNotBlank(responseDto.getErr_code()))
-            throw new WeChatException(responseDto.getErr_code_des());
-        throw new WeChatException(responseDto.getReturn_msg());
+            throw new WeChatException(responseDto.getErr_code(), responseDto.getErr_code_des());
+        throw new WeChatException(responseDto.getReturn_code(), responseDto.getReturn_msg());
     }
 
     /**
