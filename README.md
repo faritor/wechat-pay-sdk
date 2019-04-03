@@ -25,6 +25,121 @@ maven项目引用地址
     5.退款查询
     6.申请退款
 
+### 代码示例
+#### 统一下单
+
+    UnifiedOrderRequestDto dto = new UnifiedOrderRequestDto();
+    dto.setAppid("AppId");
+    dto.setMch_id("商户号");
+    dto.setBody("123");
+    dto.setNonce_str(StrCodeUtils.getStrCode(16));
+    dto.setNotify_url("123");
+    dto.setOut_trade_no("111");
+    dto.setTrade_type("JSAPI");
+    dto.setTotal_fee("123");
+    dto.setSpbill_create_ip("192.168.1.1");
+    dto.setOpenid("OpenId");
+
+    //dto.setSub_appid("特约商户APPID");
+    //dto.setSub_mch_id("特约商户号");
+    //dto.setSub_openid("特约商户OpenId");
+    
+    WeChatPay client = new WeChatUnifiedOrder();
+    try {
+        WeChatPay.setAppKey("商户密钥");//当选择服务商模式时,此处的appKey选用服务商统一秘钥
+        UnifiedOrderResponseDto responseDto = (UnifiedOrderResponseDto) client.execute(dto);
+        System.out.println(responseDto.getPrepay_id());
+    } catch (Exception e) {
+        System.out.println(e.getMessage());
+        e.printStackTrace();
+    }
+
+#### 查询订单
+
+    OrderQueryRequestDto dto = new OrderQueryRequestDto();
+    dto.setAppid("AppId");
+    dto.setMch_id("商户号");
+    dto.setNonce_str(StrCodeUtils.getStrCode(16));
+    dto.setOut_trade_no("111");
+    
+    WeChatPay client = new WeChatOrderQuery();
+    try {
+        WeChatPay.setAppKey("商户密钥");
+        OrderQueryResponseDto responseDto = (OrderQueryResponseDto) client.execute(dto);
+        System.out.println(responseDto.getTrade_state_desc());
+    } catch (Exception e) {
+        System.out.println(e.getMessage());
+        e.printStackTrace();
+    }
+
+#### 关闭订单
+
+    CloseOrderRequestDto dto = new CloseOrderRequestDto();
+    dto.setAppid("AppId");
+    dto.setMch_id("商户号");
+    dto.setNonce_str(StrCodeUtils.getStrCode(16));
+    dto.setOut_trade_no("1231");
+    
+    //dto.setSub_appid("特约商户APPID");
+    //dto.setSub_mch_id("特约商户号");
+    
+    WeChatPay client = new WeChatCloseOrder();
+    try {
+        WeChatPay.setAppKey("商户密钥");
+        CloseOrderResponseDto responseDto = (CloseOrderResponseDto) client.execute(dto);
+        System.out.println(responseDto.getReturn_msg());
+    } catch (Exception e) {
+        System.out.println(e.getMessage());
+        e.printStackTrace();
+    }
+
+#### 回调解析
+
+    HttpServletRequest request = null;
+    
+    WeChatPay.setAppKey("商户秘钥");
+    WeChatCallBackDto dto = WeChatCallBack.callBack(request);
+    String result = dto.getResult_wecaht_message();//用于响应给微信,告知微信成功或者失败
+    if ("success".equalsIgnoreCase(dto.getReturn_code())) {
+        //成功后的业务逻辑
+    }
+
+#### 退款订单查询
+
+    RefundQueryRequestDto dto = new RefundQueryRequestDto();
+    dto.setAppid("AppId");
+    dto.setMch_id("商户号");
+    dto.setNonce_str(StrCodeUtils.getStrCode(16));
+    dto.setOut_trade_no("1231");
+
+    WeChatPay client = new WeChatCloseOrder();
+    try {
+        WeChatPay.setAppKey("商户密钥");
+        RefundQueryResponseDto responseDto = (RefundQueryResponseDto) client.execute(dto);
+        System.out.println(responseDto.getReturn_msg());
+    } catch (Exception e) {
+        System.out.println(e.getMessage());
+        e.printStackTrace();
+    }
+
+#### 申请退款
+
+    RefundRequestDto dto = new RefundRequestDto();
+    dto.setAppid("AppId");
+    dto.setMch_id("商户号");
+    dto.setNonce_str(StrCodeUtils.getStrCode(16));
+    dto.setOut_trade_no("1231");
+
+    WeChatPay client = new WeChatCloseOrder();
+    try {
+        WeChatPay.setAppKey("商户密钥");
+        RefundResponseDto responseDto = (RefundResponseDto) client.execute(dto);
+        System.out.println(responseDto.getReturn_msg());
+    } catch (Exception e) {
+        System.out.println(e.getMessage());
+        e.printStackTrace();
+    }
+
 版本更新日志:
 
 1.0.9
