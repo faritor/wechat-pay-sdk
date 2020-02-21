@@ -8,14 +8,13 @@ import net.unmz.java.util.security.SignUtils;
 import net.unmz.java.util.xml.XmlUtils;
 import net.unmz.java.wechat.pay.dto.BaseRequestDto;
 import net.unmz.java.wechat.pay.dto.BaseResponseDto;
-import net.unmz.java.wechat.pay.exception.WeChatException;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Map;
 
 /**
  * Project Name:
- * 功能描述：
+ * 功能描述：微信支付业务抽象基类
  *
  * @author faritor@unmz.net
  * @version 1.0
