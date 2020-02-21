@@ -33,7 +33,7 @@ public class WeChatCloseOrder extends WeChatPay {
     @Override
     public BaseResponseDto execute(BaseRequestDto dto) throws Exception {
         String result = doPostWeChetRequest(dto, WeChatURLEnum.CLOSE_ORDER.getUrl());
-        CloseOrderResponseDto responseDto = JsonUtils.toBean(XmlUtils.toString(result, "utf-8"), CloseOrderResponseDto.class);
+        CloseOrderResponseDto responseDto = XmlUtils.toBean(result, CloseOrderResponseDto.class);
         System.out.println("WeChat return message : " + JsonUtils.toJSON(responseDto));
         if (WeChatResponseCodeEnum.SUCCESS.getCode().equals(responseDto.getResult_code())
                 && WeChatResponseCodeEnum.SUCCESS.getCode().equals(responseDto.getReturn_code()))

@@ -26,7 +26,7 @@ public class WeChatRefundQuery extends WeChatPay {
     @Override
     public BaseResponseDto execute(BaseRequestDto dto) throws Exception {
         String result = doPostWeChetRequest(dto, WeChatURLEnum.REFUND_QUERY.getUrl());
-        RefundQueryResponseDto responseDto = JsonUtils.toBean(XmlUtils.toString(result, "utf-8"), RefundQueryResponseDto.class);
+        RefundQueryResponseDto responseDto = XmlUtils.toBean(result, RefundQueryResponseDto.class);
         System.out.println("WeChat return message : " + JsonUtils.toJSON(responseDto));
         if (WeChatResponseCodeEnum.SUCCESS.getCode().equals(responseDto.getResult_code())
                 && WeChatResponseCodeEnum.SUCCESS.getCode().equals(responseDto.getReturn_code()))

@@ -26,7 +26,7 @@ public class WeChatRefundAble extends WeChatPay {
     @Override
     public BaseResponseDto execute(BaseRequestDto dto) throws Exception {
         String result = doPostWeChetRequest(dto, WeChatURLEnum.REFUNDABLE.getUrl());
-        RefundResponseDto responseDto = JsonUtils.toBean(XmlUtils.toString(result, "utf-8"), RefundResponseDto.class);
+        RefundResponseDto responseDto = XmlUtils.toBean(result, RefundResponseDto.class);
         System.out.println("WeChat return message : " + JsonUtils.toJSON(responseDto));
         if (WeChatResponseCodeEnum.SUCCESS.getCode().equals(responseDto.getResult_code())
                 && WeChatResponseCodeEnum.SUCCESS.getCode().equals(responseDto.getReturn_code()))

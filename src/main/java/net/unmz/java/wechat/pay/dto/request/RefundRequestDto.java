@@ -12,14 +12,14 @@ import net.unmz.java.wechat.pay.dto.BaseRequestDto;
  * @date 2018-3-31 23:26
  * @since JDK 1.8
  */
-public class RefundRequestDto extends BaseRequestDto{
+public class RefundRequestDto extends BaseRequestDto {
 
     private static final long serialVersionUID = -1006502932011059109L;
     @ValidateLength(value = 32)
     private String transaction_id;//String(32)		微信生成的订单号，在支付通知中有返回
     @ValidateLength(value = 32)
     private String out_trade_no;//String(32)		商户系统内部订单号，要求32个字符内，只能是数字、大小写字母_-|*@ ，且在同一个商户号下唯一。
-    @ValidateLength(value = 64,nullable = false)
+    @ValidateLength(value = 64, nullable = false)
     private String out_refund_no;//是	String(64)	商户系统内部的退款单号，商户系统内部唯一，只能是数字、大小写字母_-|*@ ，同一退款单号多次请求只退一笔。
     @ValidateLength(nullable = false)
     private String total_fee;//是	Int	        	订单总金额，单位为分，只能为整数，详见支付金额
