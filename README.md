@@ -12,7 +12,7 @@ maven项目引用地址
 <dependency>
   <groupId>net.unmz.java.wechat.pay</groupId>
   <artifactId>wechat-pay-sdk</artifactId>
-  <version>1.0.9</version>
+  <version>1.0.11</version>
 </dependency>
 ```
 
