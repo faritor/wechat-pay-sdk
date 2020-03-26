@@ -7,12 +7,14 @@ __封装微信支付，使支付更简单，更专注业务__
 
 已有功能,可以在测试类中查看示例
 
+本sdk仅支持微信支付v2文档中的接口
+
 maven项目引用地址
 ```
 <dependency>
   <groupId>net.unmz.java.wechat.pay</groupId>
   <artifactId>wechat-pay-sdk</artifactId>
-  <version>1.0.11</version>
+  <version>1.0.12</version>
 </dependency>
 ```
 
@@ -109,8 +111,8 @@ maven项目引用地址
     RefundQueryRequestDto dto = new RefundQueryRequestDto();
     dto.setAppid("AppId");
     dto.setMch_id("商户号");
-    dto.setNonce_str(StrCodeUtils.getStrCode(16));
-    dto.setOut_trade_no("1231");
+    dto.setNonce_str(UUIDUtils.getUUID());
+    dto.setOut_trade_no("商户订单号");
 
     WeChatPay client = new WeChatCloseOrder();
     try {
@@ -127,20 +129,38 @@ maven项目引用地址
     RefundRequestDto dto = new RefundRequestDto();
     dto.setAppid("AppId");
     dto.setMch_id("商户号");
-    dto.setNonce_str(StrCodeUtils.getStrCode(16));
-    dto.setOut_trade_no("1231");
 
-    WeChatPay client = new WeChatCloseOrder();
+    dto.setNonce_str(UUIDUtils.getUUID());
+    dto.setNotify_url("回调通知地址");
+    dto.setOut_trade_no("商户订单号");
+    dto.setTotal_fee("金额");
+    dto.setOut_refund_no("退款订单号");
+    dto.setRefund_fee("退款金额");
+
+    WeChatPay client = new WeChatRefundAble();
     try {
-        WeChatPay.setAppKey("商户密钥");
+        WeChatPay.setAppKey("商户秘钥");
+        WeChatPay.setUseCert(true);
+        WeChatPay.setSslCertPath("证书地址(建议在非项目内)");
+        WeChatPay.setSslCertPassword("证书密码(默认是商户Id)");
         RefundResponseDto responseDto = (RefundResponseDto) client.execute(dto);
-        System.out.println(responseDto.getReturn_msg());
+        System.out.println(JsonUtils.toJSON(responseDto));
     } catch (Exception e) {
-        System.out.println(e.getMessage());
         e.printStackTrace();
     }
 
+#### 退款解析
+
+    WeChatPay.setAppKey("商户秘钥");
+    WeChatRefundCallBackDto dto = WeChatRefundCallBack.callBack(request);
+    System.out.println(JsonUtils.toJSON(dto));
+
+
 ### 版本更新日志:
+
+#### 1.0.12
+
+    增加微信支付退款回调解析
 
 #### 1.0.11
 
