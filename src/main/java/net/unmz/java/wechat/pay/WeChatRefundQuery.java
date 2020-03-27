@@ -105,7 +105,7 @@ public class WeChatRefundQuery extends WeChatPay {
                 addMap.put("refund_success_time_" + i, Class.forName("java.lang.String"));
                 addValMap.put("refund_success_time_" + i, data.get("refund_success_time_" + i));
             }
-            Object obj2 = new ClassUtils<RefundQueryResponseDto>().dynamicClass(RefundQueryResponseDto.class, dto, addMap, addValMap);
+            Object obj2 = ClassUtils.dynamicClass(dto, addMap, addValMap);
             System.out.println(JsonUtils.toJSON(obj2));
             return dto;
         } catch (Exception e) {
