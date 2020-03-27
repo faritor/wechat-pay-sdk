@@ -1,5 +1,7 @@
 package net.unmz.java.wechat.pay.dto.response;
 
+import net.unmz.java.wechat.pay.dto.BaseResponseDto;
+
 /**
  * Project Name:
  * 功能描述：
@@ -9,5 +11,5 @@ package net.unmz.java.wechat.pay.dto.response;
  * @date 2018-3-31 23:29
  * @since JDK 1.8
  */
-public class ReverseResponseDto {
+public class ReverseResponseDto extends BaseResponseDto {
 }

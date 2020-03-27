@@ -12,6 +12,9 @@ import net.unmz.java.wechat.pay.dto.response.OrderQueryResponseDto;
 import net.unmz.java.wechat.pay.exception.WeChatException;
 import org.apache.commons.lang3.StringUtils;
 
+import java.nio.charset.StandardCharsets;
+import java.util.Map;
+
 /**
  * Project Name: 微信支付SDK
  * 功能描述：微信支付订单查询接口
@@ -42,6 +45,12 @@ public class WeChatOrderQuery extends WeChatPay {
         else if (StringUtils.isNotBlank(responseDto.getErr_code()))
             throw new WeChatException(responseDto.getErr_code(), responseDto.getErr_code_des());
         throw new WeChatException(responseDto.getTrade_state(), responseDto.getTrade_state_desc());
+    }
+
+    @Override
+    public Map<String, String> executeRespMap(BaseRequestDto dto) throws Exception {
+        String result = doPostWeChetRequest(dto, WeChatURLEnum.ORDER_QUERY.getUrl());
+        return XmlUtils.toMap(result.getBytes(), StandardCharsets.UTF_8.displayName());
     }
 
     /**

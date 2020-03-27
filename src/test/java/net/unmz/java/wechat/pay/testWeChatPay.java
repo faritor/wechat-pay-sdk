@@ -8,6 +8,7 @@ import net.unmz.java.wechat.pay.exception.WeChatException;
 import org.junit.Test;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 
 /**
  * Project Name: 微信支付SDK
@@ -132,9 +133,10 @@ public class testWeChatPay {
 //        WeChatPay.setAppKey("商户密钥");//当选择服务商模式时,此处的appKey选用服务商统一秘钥
 
         try {
-            WeChatPay client = new WeChatCloseOrder();
-            RefundQueryResponseDto responseDto = (RefundQueryResponseDto) client.execute(dto);
-            System.out.println(responseDto.getReturn_msg());
+            WeChatPay client = new WeChatRefundQuery();
+            Map<String, String> map = client.executeRespMap(dto);
+//            RefundQueryResponseDto responseDto = (RefundQueryResponseDto) client.execute(dto);//该方法动态参数解析还有部分问题,建议先用map接收
+//            System.out.println(responseDto.getReturn_msg());
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println(e.getMessage());
@@ -154,10 +156,11 @@ public class testWeChatPay {
 //        WeChatPay.setAppKey("商户密钥");//当选择服务商模式时,此处的appKey选用服务商统一秘钥
 
         try {
-            WeChatPay client = new WeChatCloseOrder();
+            WeChatPay client = new WeChatRefundAble();
             WeChatPay.setUseCert(true);//是否使用证书
-            RefundResponseDto responseDto = (RefundResponseDto) client.execute(dto);
-            System.out.println(responseDto.getReturn_msg());
+            Map<String, String> map = client.executeRespMap(dto);
+//            RefundResponseDto responseDto = (RefundResponseDto) client.execute(dto);//该方法动态参数解析还有部分问题,建议先用map接收
+//            System.out.println(responseDto.getReturn_msg());
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println(e.getMessage());

@@ -12,6 +12,9 @@ import net.unmz.java.wechat.pay.dto.response.CloseOrderResponseDto;
 import net.unmz.java.wechat.pay.exception.WeChatException;
 import org.apache.commons.lang3.StringUtils;
 
+import java.nio.charset.StandardCharsets;
+import java.util.Map;
+
 /**
  * Project Name: 微信支付SDK
  * 功能描述：微信支付关闭订单接口
@@ -41,6 +44,12 @@ public class WeChatCloseOrder extends WeChatPay {
         else if (StringUtils.isNotBlank(responseDto.getErr_code()))
             throw new WeChatException(responseDto.getErr_code(), responseDto.getErr_code_des());
         throw new WeChatException(responseDto.getResult_code(), responseDto.getResult_msg());
+    }
+
+    @Override
+    public Map<String, String> executeRespMap(BaseRequestDto dto) throws Exception {
+        String result = doPostWeChetRequest(dto, WeChatURLEnum.CLOSE_ORDER.getUrl());
+        return XmlUtils.toMap(result.getBytes(), StandardCharsets.UTF_8.displayName());
     }
 
     /**

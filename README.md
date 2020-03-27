@@ -114,11 +114,13 @@ maven项目引用地址
     dto.setNonce_str(UUIDUtils.getUUID());
     dto.setOut_trade_no("商户订单号");
 
-    WeChatPay client = new WeChatCloseOrder();
+    WeChatPay client = new WeChatRefundQuery();
     try {
         WeChatPay.setAppKey("商户密钥");
-        RefundQueryResponseDto responseDto = (RefundQueryResponseDto) client.execute(dto);
-        System.out.println(responseDto.getReturn_msg());
+        
+        Map<String,String> map = client.execute(dto);
+        //RefundQueryResponseDto responseDto = (RefundQueryResponseDto) client.execute(dto);//该方法动态参数解析还有部分问题,建议先用map接收
+        //System.out.println(responseDto.getReturn_msg());
     } catch (Exception e) {
         System.out.println(e.getMessage());
         e.printStackTrace();
@@ -143,8 +145,10 @@ maven项目引用地址
         WeChatPay.setUseCert(true);
         WeChatPay.setSslCertPath("证书地址(建议在非项目内)");
         WeChatPay.setSslCertPassword("证书密码(默认是商户Id)");
-        RefundResponseDto responseDto = (RefundResponseDto) client.execute(dto);
-        System.out.println(JsonUtils.toJSON(responseDto));
+        
+        Map<String,String> map = client.execute(dto);
+        //RefundResponseDto responseDto = (RefundResponseDto) client.execute(dto);//该方法动态参数解析还有部分问题,建议先用map接收
+        //System.out.println(JsonUtils.toJSON(responseDto));
     } catch (Exception e) {
         e.printStackTrace();
     }
@@ -161,6 +165,7 @@ maven项目引用地址
 #### 1.0.12
 
     增加微信支付退款回调解析
+    微信支付所有接口增加map返回
 
 #### 1.0.11
 

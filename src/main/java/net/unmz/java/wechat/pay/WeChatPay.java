@@ -63,6 +63,8 @@ public abstract class WeChatPay {
 
     public abstract BaseResponseDto execute(BaseRequestDto dto) throws Exception;
 
+    public abstract Map<String, String> executeRespMap(BaseRequestDto dto) throws Exception;
+
     /**
      * 向微信发起统一下单请求
      *
@@ -79,7 +81,7 @@ public abstract class WeChatPay {
         params.put("sign", sign);
         String requestXml = XmlUtils.toXml(params);
         if (USE_CERT) {
-            return doRefund(url,requestXml);
+            return doRefund(url, requestXml);
         }
         return HttpUtils.doPost(url, null, null, null, requestXml);
     }
@@ -118,12 +120,12 @@ public abstract class WeChatPay {
         return false;
     }
 
-    public static String reqInfoDecode(String reqInfo){
+    public static String reqInfoDecode(String reqInfo) {
         String APISecret = MD5Utils.convert32(AppKey).toLowerCase();
         return AESUtils.decode(reqInfo, APISecret);
     }
 
-    public static String doRefund(String url,String data) throws Exception {
+    public static String doRefund(String url, String data) throws Exception {
         //注意PKCS12证书 是从微信商户平台-》账户设置-》 API安全 中下载的
         KeyStore keyStore = KeyStore.getInstance("PKCS12");
         //指向你的证书的绝对路径，带着证书去访问
@@ -172,4 +174,5 @@ public abstract class WeChatPay {
             httpclient.close();
         }
     }
+
 }
