@@ -1,5 +1,7 @@
 package net.unmz.java.wechat.pay.dto.request;
 
+import net.unmz.java.wechat.pay.dto.BaseRequestDto;
+
 /**
  * Project Name:
  * 功能描述：
@@ -9,5 +11,5 @@ package net.unmz.java.wechat.pay.dto.request;
  * @date 2018-3-31 23:29
  * @since JDK 1.8
  */
-public class ReverseRequestDto {
+public class ReverseRequestDto extends BaseRequestDto {
 }

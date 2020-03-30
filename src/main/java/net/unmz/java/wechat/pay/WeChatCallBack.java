@@ -1,17 +1,15 @@
 package net.unmz.java.wechat.pay;
 
-import net.unmz.java.util.json.JsonUtils;
 import net.unmz.java.util.xml.XmlUtils;
 import net.unmz.java.wechat.pay.dto.response.WeChatCallBackDto;
 import net.unmz.java.wechat.pay.exception.WeChatException;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * Project Name:
- * 功能描述：
+ * 功能描述： 微信支付回调解析
  *
  * @author faritor@unmz.net
  * @version 1.0
@@ -34,13 +32,12 @@ public class WeChatCallBack {
         String result_code = "FAIL";
         try {
             String xmlString = XmlUtils.parseRequst(request);
-            if(StringUtils.isNotBlank(xmlString)){
+            if (StringUtils.isNotBlank(xmlString)) {
                 System.out.println("----接收到的数据如下：---\n" + xmlString);
                 if (WeChatPay.checkSign(xmlString)) {
-                    String xml = XmlUtils.toString(xmlString, "utf-8");
-                    dto = JsonUtils.toBean(xml, WeChatCallBackDto.class);
+                    dto = XmlUtils.toBean(xmlString, WeChatCallBackDto.class);
                     result_code = dto.getResult_code();
-                }else
+                } else
                     result_code = "签名校验失败";
             }
         } catch (Exception e) {

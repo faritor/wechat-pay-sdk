@@ -14,14 +14,14 @@ import net.unmz.java.wechat.pay.dto.BaseResponseDto;
 public class RefundQueryResponseDto extends BaseResponseDto {
 
     private static final long serialVersionUID = 8975879080604292774L;
-    private String transaction_id;//是	String(32)	微信订单号
-    private String out_trade_no;//是 	String(32)	商户系统内部订单号，要求32个字符内，只能是数字、大小写字母_-|*@ ，且在同一个商户号下唯一。
-    private String total_fee;//是	Int	        	订单总金额，单位为分，只能为整数，详见支付金额
+    private String transaction_id;//是	String(32)	    微信订单号
+    private String out_trade_no;//是 	String(32)	    商户系统内部订单号，要求32个字符内，只能是数字、大小写字母_-|*@ ，且在同一个商户号下唯一。
+    private String total_fee;//是	Int	        	    订单总金额，单位为分，只能为整数，详见支付金额
     private String settlement_total_fee;//否	Int		当订单使用了免充值型优惠券后返回该参数，应结订单金额=订单金额-免充值优惠券金额。
-    private String fee_type;//否 	String(8)		订单金额货币类型，符合ISO 4217标准的三位字母代码，默认人民币：CNY，其他值列表详见货币类型
+    private String fee_type;//否 	String(8)		    订单金额货币类型，符合ISO 4217标准的三位字母代码，默认人民币：CNY，其他值列表详见货币类型
     private String cash_fee;//是	    Int		        现金支付金额，单位为分，只能为整数，详见支付金额
-    private String refund_count;//是 	Int	    	当前返回退款笔数
-    private String total_refund_count;//否	Int		订单总共已发生的部分退款次数，当请求参数传入offset后有返回
+    private String refund_count;//是 	Int	    	    当前返回退款笔数
+    private String total_refund_count;//否	Int		    订单总共已发生的部分退款次数，当请求参数传入offset后有返回
 
     public String getTransaction_id() {
         return transaction_id;

@@ -20,13 +20,13 @@ public class UnifiedOrderRequestDto extends BaseRequestDto {
 
     @ValidateLength(value = 32)
     private String device_info;//非必填	String(32)	    自定义参数，可以为终端设备号(门店号或收银设备ID)，PC网页或公众号内支付可以传"WEB"
-    @ValidateLength(value = 128,nullable = false)
+    @ValidateLength(value = 128, nullable = false)
     private String body;//必填 String(128)	            商品简单描述，该字段请按照规范传递，具体请见参数规定
     @ValidateLength(value = 6000)
     private String detail;//非必填	String(6000)	 	商品详细描述，对于使用单品优惠的商户，改字段必须按照规范上传，详见“单品优惠参数说明”
     @ValidateLength(value = 127)
     private String attach;//非必填	String(127)         附加数据，在查询API和支付通知中原样返回，可作为自定义参数使用。
-    @ValidateLength(value = 32,nullable = false)
+    @ValidateLength(value = 32, nullable = false)
     private String out_trade_no;//必填	String(32)		商户系统内部订单号，要求32个字符内，只能是数字、大小写字母_-|*@ ，且在同一个商户号下唯一。详见商户订单号
     @ValidateLength(value = 16)
     private String fee_type;//非必填	String(16)	        符合ISO 4217标准的三位字母代码，默认人民币：CNY，详细列表请参见货币类型
@@ -40,9 +40,9 @@ public class UnifiedOrderRequestDto extends BaseRequestDto {
     private String time_expire;//非必填	String(14)      订单失效时间，格式为yyyyMMddHHmmss，如2009年12月27日9点10分10秒表示为20091227091010。订单失效时间是针对订单号而言的，由于在请求支付的时候有一个必传参数prepay_id只有两小时的有效期，所以在重入时间超过2小时的时候需要重新请求下单接口获取新的prepay_id。其他详见时间规则 建议：最短失效时间间隔大于1分钟
     @ValidateLength(value = 32)
     private String goods_tag;//非必填	String(32)		订单优惠标记，使用代金券或立减优惠功能时需要的参数，说明详见代金券或立减优惠
-    @ValidateLength(value = 256,nullable = false)
+    @ValidateLength(value = 256, nullable = false)
     private String notify_url;//必填  	String(256)	    异步接收微信支付结果通知的回调地址，通知url必须为外网可访问的url，不能携带参数。
-    @ValidateLength(value = 16,nullable = false)
+    @ValidateLength(value = 16, nullable = false)
     private String trade_type;//必填  	String(16)      JSAPI 公众号支付 NATIVE 扫码支付 APP APP支付
     @ValidateLength(value = 32)
     private String product_id;//非必填	String(32)		trade_type=NATIVE时（即扫码支付），此参数必传。此参数为二维码中包含的商品ID，商户自行定义
