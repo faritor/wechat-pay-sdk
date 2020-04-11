@@ -1,7 +1,7 @@
 ### wechat-pay-sdk
 
 
-[![Build Status](https://api.travis-ci.org/FaritorKang/wechat-pay-sdk.svg?branch=master)](https://travis-ci.org/github/FaritorKang/wechat-pay-sdk)
+[![Build Status](https://travis-ci.org/FaritorKang/wechat-pay-sdk.svg?branch=master)](https://travis-ci.org/FaritorKang/wechat-pay-sdk)
 [![license](https://img.shields.io/github/license/FaritorKang/wechat-pay-sdk.svg)](https://opensource.org/licenses/MIT)
 [![maven](https://img.shields.io/maven-central/v/net.unmz.java.wechat.pay/wechat-pay-sdk.svg)](https://search.maven.org/artifact/net.unmz.java.wechat.pay/unmz-common-util)
 
