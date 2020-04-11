@@ -1,4 +1,13 @@
 ### wechat-pay-sdk
+
+
+[![Build Status](https://api.travis-ci.org/FaritorKang/wechat-pay-sdk.svg?branch=master)](https://travis-ci.org/github/FaritorKang/wechat-pay-sdk)
+[![license](https://img.shields.io/github/license/FaritorKang/wechat-pay-sdk.svg)](https://opensource.org/licenses/MIT)
+[![maven](https://img.shields.io/maven-central/v/net.unmz.java.wechat.pay/wechat-pay-sdk.svg)](https://search.maven.org/artifact/net.unmz.java.wechat.pay/unmz-common-util)
+
+
+
+
 __封装微信支付，使支付更简单，更专注业务__
 
 本项目采用JDK 1.7编译，可以更好的兼容以前的老旧项目。
